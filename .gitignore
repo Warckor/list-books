@@ -208,6 +208,7 @@ yarn-error.log
 testem.log
 /typings
 node_modules/
+.angular/
 
 # System files
 .DS_Store
