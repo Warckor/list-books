@@ -1,0 +1,38 @@
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
+
+  .book-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 16px;
+    width: 250px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+
+    h3 {
+      font-size: 1.2rem;
+      color: #343a40;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #495057;
+      margin: 4px 0;
+
+      strong {
+        color: #212529;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<div class="book-list">
+  @if (books() && books().length > 0) {
+  @for (book of books(); track book.title) {
+  <div class="book-card">
+    <h3>{{book.title}}</h3>
+    <p><strong>Author:</strong> {{book.author}}</p>
+
+    @if (book.published_year) {
+    <p><strong>Year:</strong> {{book.published_year}}</p>
+    }
+  </div>
+  }
+  } @else {
+  <p>No hay libros disponibles</p>
+  }
+
+</div>
