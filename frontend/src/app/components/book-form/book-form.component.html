@@ -1,0 +1,46 @@
+<h2>Añadir Nuevo Libro</h2>
+
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+  <!-- Book title -->
+  <div>
+    <label for="title">Título:</label>
+    <input type="text" id="title" formControlName="title" />
+    @if (submitted && f['title'].errors) {
+    <div class="error">
+      <p>El título es obligatorio.</p>
+    </div>
+    }
+  </div>
+
+  <!-- Book author -->
+  <div>
+    <label for="author">Autor:</label>
+    <input type="text" id="author" formControlName="author" />
+    @if (submitted && f['author'].errors) {
+    <div class="error">
+      <p>El autor es obligatorio</p>
+    </div>
+    }
+  </div>
+
+  <!-- Book Published Year -->
+  <div>
+    <label for="publishedYear">Año de publicación:</label>
+    <input type="text" id="publishedYear" formControlName="publishedYear" />
+    @if (submitted && f['publishedYear'].errors) {
+    <div class="error">
+      <span *if="f.publishedYear.errors?.required">El año de publicación es obligatorio.</span>
+      <span *if="f.publishedYear.errors?.pattern">Debe ser un año válido.</span>
+    </div>
+    }
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit">Guardar</button>
+</form>
+
+@if (successMessage) {
+<div class="success">
+  <p>{{ successMessage }}</p>
+</div>
+}
