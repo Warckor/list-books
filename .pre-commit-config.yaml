@@ -4,7 +4,16 @@ default_stages:
 fail_fast: true
 
 repos:
-  # 1. Python checks
+  # 1. General checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: debug-statements
+
+  # 2. Python checks
   - repo: https://github.com/psf/black
     rev: 24.10.0
     hooks:
@@ -36,13 +45,13 @@ repos:
       # Run the formatter.
       - id: ruff-format
 
-  # 2. YAML checks
+  # 3. YAML checks
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.35.1
     hooks:
       - id: yamllint
 
-  # 3. Check gitleaks for secrets
+  # 4. Check gitleaks for secrets
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.21.2
     hooks:
@@ -50,12 +59,3 @@ repos:
         id: gitleaks-docker
         args: ["--verbose", "--redact"]
         files: .*
-
-  # 4. General checks
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-      - id: debug-statements
