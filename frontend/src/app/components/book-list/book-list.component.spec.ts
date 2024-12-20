@@ -1,23 +1,40 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { BookListComponent } from './book-list.component';
+import { BooksService } from '../../services/books.service';
+import { of } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('BookListComponent', () => {
-  let component: BookListComponent;
-  let fixture: ComponentFixture<BookListComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BookListComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(BookListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      providers: [
+        BookListComponent,
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
+    });
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render a list of books', async () => {
+    const mockBooksService = {
+      getBooks: jest
+        .fn()
+        .mockReturnValue(
+          of([
+            { title: '1984', author: 'George Orwell', published_year: 1949 },
+          ]),
+        ),
+    };
+
+    await render(BookListComponent, {
+      componentProviders: [
+        { provide: BooksService, useValue: mockBooksService },
+      ],
+    });
+
+    expect(screen.getByText('1984')).toBeTruthy();
+    expect(screen.getByText('George Orwell')).toBeTruthy();
   });
 });
