@@ -26,11 +26,11 @@ def add_book():
     book = Book(
         title=data["title"],
         author=data["author"],
-        published_year=data.get("published_year"),
+        published_year=data["published_year"],
     )
     db.session.add(book)
     db.session.commit()
-    return jsonify({"message": "Book added!", "id": book.id}), 201
+    return jsonify(book.to_dict()), 201
 
 
 @bp.route("/api/books/<int:book_id>", methods=["PUT"])
