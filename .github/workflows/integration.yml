@@ -121,14 +121,16 @@ jobs:
 
       - name: Build and push backend image
         run: |
+          REPO=$(echo "${{ github.repository }}" | awk '{print tolower($0)}')
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
-            --tag ghcr.io/${{ github.repository }}:$backend_version \
+            --tag ghcr.io/$REPO:$backend_version \
             --push \
             ./backend
 
       - name: Build and Push Frontend Image
         run: |
+          REPO=$(echo "${{ github.repository }}" | awk '{print tolower($0)}')
           docker build \
-          -t ghcr.io/${{ github.repository }}/frontend:$frontend_version ./frontend
-          docker push ghcr.io/${{ github.repository }}/frontend:$frontend_version
+          -t ghcr.io/$REPO/frontend:$frontend_version ./frontend
+          docker push ghcr.io/$REPO/frontend:$frontend_version
