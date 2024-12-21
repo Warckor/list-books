@@ -97,6 +97,7 @@ jobs:
             # Fallback al SHA corto del commit
             echo "backend_version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           fi
+          echo "VERSION_BACKEND: $backend_version"
 
       - name: Extract Frontend Version
         id: front_version
@@ -104,6 +105,7 @@ jobs:
           # Leer el campo "version" del package.json
           frontend_version=$(jq -r '.version' ./frontend/package.json)
           echo "frontend_version=$frontend_version" >> $GITHUB_ENV
+          echo "VERSION_FRONTEND: $frontend_version"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
