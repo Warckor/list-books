@@ -92,10 +92,12 @@ jobs:
         run: |
           # Si el commit tiene un tag, úsalo como versión
           if git describe --tags --exact-match >/dev/null 2>&1; then
-            echo "backend_version=$(git describe --tags)" >> $GITHUB_ENV
+            backend_version=$(git describe --tags)
+            echo "$backend_version" >> $GITHUB_ENV
           else
             # Fallback al SHA corto del commit
-            echo "backend_version=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+            backend_version=$(git rev-parse --short HEAD)
+            echo "$backend_version" >> $GITHUB_ENV
           fi
           echo "VERSION_BACKEND: $backend_version"
 
