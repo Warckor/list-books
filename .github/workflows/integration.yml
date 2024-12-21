@@ -124,7 +124,7 @@ jobs:
           REPO=$(echo "${{ github.repository }}" | awk '{print tolower($0)}')
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
-            --tag ghcr.io/$REPO:$backend_version \
+            --tag ghcr.io/$REPO/backend:$backend_version \
             --push \
             ./backend
 
