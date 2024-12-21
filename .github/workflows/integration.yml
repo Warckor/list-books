@@ -123,12 +123,12 @@ jobs:
         run: |
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
-            --tag ghcr.io/${{ github.repository }}:${{ steps.back_version.outputs.backend_version }} \
+            --tag ghcr.io/${{ github.repository }}:$backend_version \
             --push \
             ./backend
 
       - name: Build and Push Frontend Image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/frontend:${{ steps.front_version.outputs.frontend_version }} \
-          ./frontend
-          docker push ghcr.io/${{ github.repository }}/frontend:${{ steps.front_version.outputs.frontend_version }}
+          docker build \
+          -t ghcr.io/${{ github.repository }}/frontend:$frontend_version ./frontend
+          docker push ghcr.io/${{ github.repository }}/frontend:$frontend_version
