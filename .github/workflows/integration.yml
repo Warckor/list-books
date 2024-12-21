@@ -109,12 +109,6 @@ jobs:
           echo "frontend_version=$frontend_version" >> $GITHUB_ENV
           echo "VERSION_FRONTEND: $frontend_version"
 
-      - name: Create and Push Tag
-        run: |
-          # Create tag using frontend version
-          git tag "v${frontend_version}" || true
-          # Push tag to remote
-          git push origin "v${frontend_version}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
