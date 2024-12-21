@@ -50,6 +50,7 @@ repos:
     rev: v1.35.1
     hooks:
       - id: yamllint
+        args: [-d, "{extends: default, rules: {line-length: {max: 130}}}"]
 
   # 4. Check gitleaks for secrets
   - repo: https://github.com/gitleaks/gitleaks
