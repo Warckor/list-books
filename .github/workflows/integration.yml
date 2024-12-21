@@ -50,9 +50,11 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+        working-directory: ./backend
 
       - name: Run tests
         run: pytest
+        working-directory: ./backend
 
   test_frontend:
     needs: check_project
@@ -68,9 +70,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./frontend
 
       - name: Run tests
         run: npm test
+        working-directory: ./frontend
 
   integration:
     needs: [test_backend, test_frontend]
