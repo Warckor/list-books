@@ -8,13 +8,12 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 
-def create_app():
+def create_app(config_object=Config):
     app = Flask(__name__)
-    app.config.from_object(Config)
-    CORS(app)
+    app.config.from_object(config_object)
 
     db.init_app(app)
-    migrate.init_app(app, db)
+    CORS(app)
 
     from app.routes import bp as routes_bp
 
