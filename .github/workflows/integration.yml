@@ -84,6 +84,9 @@ jobs:
       packages: write
       id-token: write
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Paths Changes Filter
         uses: dorny/paths-filter@v3
         id: filter
@@ -93,12 +96,6 @@ jobs:
               - 'backend/**'
             frontend:
               - 'frontend/**'
-
-      - name: Checkout code
-        if: steps.filter.outputs.backend == 'true' || steps.filter.outputs.frontend == 'true'
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Extract Backend Version
         if: steps.filter.outputs.backend == 'true'
