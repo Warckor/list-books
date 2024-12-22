@@ -130,6 +130,8 @@ jobs:
             --tag ghcr.io/$REPO/backend:$backend_version \
             --push \
             ./backend
+          docker tag ghcr.io/$REPO/backend:$backend_version ghcr.io/$REPO/backend:latest
+          docker push ghcr.io/$REPO/backend:latest
 
       - name: Build and Push Frontend Image
         run: |
@@ -137,3 +139,5 @@ jobs:
           docker build \
           -t ghcr.io/$REPO/frontend:$frontend_version ./frontend
           docker push ghcr.io/$REPO/frontend:$frontend_version
+          docker tag ghcr.io/$REPO/frontend:$frontend_version ghcr.io/$REPO/frontend:latest
+          docker push ghcr.io/$REPO/frontend:latest
