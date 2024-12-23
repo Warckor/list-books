@@ -26,7 +26,7 @@ def add_book():
     book = Book(
         title=data["title"],
         author=data["author"],
-        published_year=data["published_year"],
+        published_year=data.get("published_year"),
     )
     db.session.add(book)
     db.session.commit()
