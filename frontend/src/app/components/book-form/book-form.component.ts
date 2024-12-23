@@ -30,7 +30,7 @@ export class BookFormComponent {
     this.bookForm = this.form.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
-      publishedYear: [
+      published_year: [
         '',
         [Validators.required, Validators.pattern('^[0-9]{4}$')],
       ],
@@ -44,7 +44,7 @@ export class BookFormComponent {
   onSubmit() {
     this.submitted = true;
 
-    console.log(this.bookForm.invalid);
+    console.log(this.bookForm.value);
 
     if (this.bookForm.invalid) {
       return;

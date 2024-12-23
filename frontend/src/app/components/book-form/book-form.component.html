@@ -25,12 +25,11 @@
 
   <!-- Book Published Year -->
   <div>
-    <label for="publishedYear">Año de publicación:</label>
-    <input type="text" id="publishedYear" formControlName="publishedYear" />
-    @if (submitted && f['publishedYear'].errors) {
+    <label for="published_year">Año de publicación:</label>
+    <input type="text" id="published_year" formControlName="published_year" />
+    @if (submitted && f['published_year'].errors) {
     <div class="error">
-      <span *if="f.publishedYear.errors?.required">El año de publicación es obligatorio.</span>
-      <span *if="f.publishedYear.errors?.pattern">Debe ser un año válido.</span>
+      <p>El año de publicación es obligatorio.</p>
     </div>
     }
   </div>
