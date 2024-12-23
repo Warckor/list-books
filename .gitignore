@@ -209,6 +209,7 @@ testem.log
 /typings
 node_modules/
 .angular/
+k8s/.secrets.yaml
 
 # System files
 .DS_Store
