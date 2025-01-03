@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-config
+data:
+    {{- if .Values.configmap.enabled }}
+        {{- range $key, $value := .Values.configmap.data }}
+        {{ $key }}: "{{ $value }}"
+        {{- end }}
+        {{- if .Values.configmap.nginxData.enabled }}
+        nginx.conf: |
+            {{ .Values.configmap.nginxData.nginx | nindent 12 }}
+        {{- end }}
+    {{- end }}
