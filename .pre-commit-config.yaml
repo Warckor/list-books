@@ -31,7 +31,9 @@ repos:
         args: [-d, "{extends: default, rules: {line-length: {max: 130}}}"]
         exclude: |
           (?x)^(
-            list-books-helm/templates/.*
+            list-books-helm/templates/.*\.yaml|
+            list-books-helm/templates/.*\.yml|
+            list-books-helm/templates/_helpers\.tpl
           )$
 
   # 4. Check gitleaks for secrets
