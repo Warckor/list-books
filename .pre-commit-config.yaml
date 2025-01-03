@@ -29,12 +29,7 @@ repos:
     hooks:
       - id: yamllint
         args: [-d, "{extends: default, rules: {line-length: {max: 130}}}"]
-        exclude: |
-          (?x)^(
-            list-books-helm/templates/.*\.yaml|
-            list-books-helm/templates/.*\.yml|
-            list-books-helm/templates/_helpers\.tpl
-          )$
+        exclude: list-books-helm/templates
 
   # 4. Check gitleaks for secrets
   - repo: https://github.com/gitleaks/gitleaks
